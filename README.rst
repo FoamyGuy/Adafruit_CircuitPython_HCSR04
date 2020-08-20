@@ -98,8 +98,7 @@ See Also:
 Without a Context Manager
 -------------------------
 
-In the example below, we create the `HCSR04` object directly, get the distance every 2 seconds, then
-de-initialize the device.
+In the example below, we create the `HCSR04` object directly, get the distance every 2 seconds.
 
 .. code-block:: python
 
@@ -108,16 +107,13 @@ de-initialize the device.
     import adafruit_hcsr04
 
     sonar = adafruit_hcsr04.HCSR04(trigger_pin=board.D5, echo_pin=board.D6)
-    try:
-        while True:
-            try:
-                print((sonar.distance,))
-            except RuntimeError:
-                print("Retrying!")
-            time.sleep(2)
-    except KeyboardInterrupt:
-        pass
-    sonar.deinit()
+
+    while True:
+        try:
+            print((sonar.distance,))
+        except RuntimeError:
+            print("Retrying!")
+        time.sleep(2)
 
 
 With a Context Manager
